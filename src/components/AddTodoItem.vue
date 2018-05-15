@@ -24,6 +24,7 @@
 <script>
 
   export default {
+    name: 'AddTodoItem',
     data() {
       return {
         name: ''
@@ -37,7 +38,8 @@
           this.$router.push({path: '/todos'})
         }, 1000)
       },
-      updateTodoName() {
+      updateTodoName(e) {
+        console.log(`inserted ${e.currentTarget.value}`)
         this.name = this.$refs.newTodoItem.value
       }
     }

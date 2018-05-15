@@ -10,11 +10,8 @@
 
     <ion-content class="content">
 
-      <div>TEST</div>
-
-
       <ion-list>
-        <ion-item v-for="todo in todos" :key="todo.id">
+        <ion-item v-for="todo in shownTodos" :key="todo.id">
           {{todo.name}}
         </ion-item>
       </ion-list>
@@ -49,9 +46,18 @@
   ]
 
   export default {
+    name: 'TodoList',
     data () {
       return {
         todos: []
+      }
+    },
+    computed: {
+      shownTodos () {
+        return this.$route.query.filtered ? this.filtered : this.todos
+      },
+      filtered () {
+        return this.todos.length? [this.todos[0], this.todos[1]] : []
       }
     },
     methods: {
@@ -60,6 +66,7 @@
       }
     },
     created () {
+      console.log(this.$route.query.filtered)
       setTimeout(() => {
         console.log('loaded todos!')
         this.todos = TODOS

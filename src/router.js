@@ -12,4 +12,7 @@ const routes = [
   { path: '/todos/add', component: AddTodoItem}
 ]
 
-export default new VueRouter({ routes })
+export default new VueRouter({
+  routes,
+  mode: 'history'
+})
